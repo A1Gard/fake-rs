@@ -24,13 +24,23 @@ fn main() {
     println!("  COMMERCE_PROMOTION_CODE_SUFFIX: {}", suffix);
     println!("  COMMERCE_PRODUCT_DESCRIPTION:   {}", description);
 
-    let total: usize = color + department + adjective + material + product_type + prefix + suffix + description;
+    let total: usize =
+        color + department + adjective + material + product_type + prefix + suffix + description;
     println!("  ----------------------------------------");
     println!("  TOTAL:                          {}", total);
 
-    let all_500 = [color, department, adjective, material, product_type, prefix, suffix, description]
-        .iter()
-        .all(|&n| n >= 500);
+    let all_500 = [
+        color,
+        department,
+        adjective,
+        material,
+        product_type,
+        prefix,
+        suffix,
+        description,
+    ]
+    .iter()
+    .all(|&n| n >= 500);
     if all_500 {
         println!("\n✓ All COMMERCE types have at least 500 entries.");
     } else {

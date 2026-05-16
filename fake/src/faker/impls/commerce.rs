@@ -90,7 +90,8 @@ impl<L: Data> Dummy<CommerceProductDescription<L>> for String {
             let product = *L::COMMERCE_PRODUCT_TYPE.choose(rng).unwrap();
             let department = *L::COMMERCE_DEPARTMENT.choose(rng).unwrap();
 
-            return fmt.replace("{Adjective}", adjective)
+            return fmt
+                .replace("{Adjective}", adjective)
                 .replace("{Material}", material)
                 .replace("{Product}", product)
                 .replace("{Department}", department);
@@ -103,7 +104,10 @@ impl<L: Data> Dummy<CommerceProductDescription<L>> for String {
         let prod = *L::COMMERCE_PRODUCT_TYPE.choose(rng).unwrap();
         let adj2 = *L::COMMERCE_PRODUCT_ADJECTIVE.choose(rng).unwrap();
 
-        format!("The {} {} {} is designed for {} usage.", adj1, mat, prod, adj2)
+        format!(
+            "The {} {} {} is designed for {} usage.",
+            adj1, mat, prod, adj2
+        )
     }
 }
 
