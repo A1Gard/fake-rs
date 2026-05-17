@@ -18,6 +18,7 @@ pub enum AVAILABLE_LOCALES {
     NL_NL,
     TR_TR,
     FA_IR,
+    BN_BD,
 }
 
 macro_rules! fake_gen_on_return_type {
@@ -89,6 +90,10 @@ macro_rules! some_rules {
                 let s = faker::$module::fa_ir::$fake($($arg)?);
                 Box::new(move |rng: &mut R| fake_gen_on_return_type!(s,rng$(,$return_type)?))
             }
+            AVAILABLE_LOCALES::BN_BD => {
+                let s = faker::$module::bn_bd::$fake($($arg)?);
+                Box::new(move |rng: &mut R| fake_gen_on_return_type!(s,rng$(,$return_type)?))
+            }
         }
     };
 }
@@ -123,6 +128,13 @@ macro_rules! right_arm {
     ($locale:ident, $module:ident, $fake:ident(min: usize, max: usize),$sub_matches:ident$(,$return_type:ident)?) => {{
         let min = *$sub_matches.get_one::<usize>("min").unwrap();
         let max = *$sub_matches.get_one::<usize>("max").unwrap();
+        let range = min..max;
+        some_rules!($locale, $module, $fake(range)$(,$return_type)?)
+    }};
+
+    ($locale:ident, $module:ident, $fake:ident(min: f64, max: f64),$sub_matches:ident$(,$return_type:ident)?) => {{
+        let min = *$sub_matches.get_one::<f64>("min").unwrap();
+        let max = *$sub_matches.get_one::<f64>("max").unwrap();
         let range = min..max;
         some_rules!($locale, $module, $fake(range)$(,$return_type)?)
     }};
@@ -277,7 +289,19 @@ pub fn all_fakegen_commands<R: RngExt + ?Sized>() -> (
 
         //http
         (RfcStatusCode,http),
-        (ValidStatusCode,http)
+        (ValidStatusCode,http),
+
+        //commerce
+        (CommerceColor,commerce),
+        (CommerceDepartment,commerce),
+        (CommerceProductAdjective,commerce),
+        (CommerceProductMaterial,commerce),
+        (CommerceProductType,commerce),
+        (CommerceProduct,commerce),
+        (CommerceProductPrice(min:f64=0.0, max:f64=1000.0),commerce),
+        (CommercePromotionCode,commerce),
+        (CommerceProductDescription,commerce),
+        (CommerceUPC,commerce)
 
     )
 }
