@@ -1910,6 +1910,12 @@ impl Data for FR_FR {
 
     const NAME_TITLE: &'static [&'static str] = &["Mme", "M."];
 
+    const COMPANY_SUFFIX: &'static [&'static str] =
+        &["SARL", "SA", "SAS", "EURL", "et Fils", "et Cie"];
+
+    const COMPANY_NAME_TPLS: &'static [&'static str] =
+        &["{Name_1} {Suffix}", "{Name_1} et {Name_2} {Suffix}"];
+
     const ADDRESS_CITY_TPL: &'static str = "{CityName}";
 
     const ADDRESS_STREET_SUFFIX: &'static [&'static str] = &[
