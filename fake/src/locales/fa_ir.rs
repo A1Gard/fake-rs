@@ -421,6 +421,11 @@ impl Data for FA_IR {
         "یاوری",
     ];
 
+
+    // persian don't have suffix name
+    const NAME_SUFFIX: &'static [&'static str] = &[""];
+
+
     const INTERNET_FREE_EMAIL_PROVIDER: &'static [&'static str] = &[
         "mailma.ir",
         "gmail.com",
@@ -446,10 +451,15 @@ impl Data for FA_IR {
     const TIME_DEFAULT_DATETIME_FORMAT: &'static str =
         "[year]/[month]/[day] [hour]:[minute]:[second]";
 
-    const ADDRESS_BUILDING_NUMBER_FORMATS: &'static [&'static str] = &["nº ###", "nº ##", "nº #"];
-    const ADDRESS_CITY_PREFIX: &'static [&'static str] = &["Villa", "San", "Santa", "Santo"];
+    const ADDRESS_BUILDING_NUMBER_FORMATS: &'static [&'static str] = &["پلاک ###", "بلوک ##", "پ #"];
+    const ADDRESS_CITY_PREFIX: &'static [&'static str] = &["شمال", "جنوب", "شرق", "غرب","مرکز"];
     const ADDRESS_CITY_SUFFIX: &'static [&'static str] =
-        &["del Castello", "del Lago", "del Tramonto"];
+        &["شمالی", "جنوبی", "شرقی", "غربی"];
+
+    const ADDRESS_CITY_TPL: &'static str = "{CityName} {CitySuffix}";
+    const ADDRESS_CITY_WITH_PREFIX_TPL: &'static str = "{CityPrefix} {CityName}";
+    const ADDRESS_SECONDARY_ADDR_TPL: &'static str = "{SecondaryAddrType} {Number}";
+
     const ADDRESS_COUNTRY: &'static [&'static str] = &[
         "افغانستان",
         "آلبانی",
@@ -771,6 +781,7 @@ impl Data for FA_IR {
 
     const ADDRESS_STREET_SUFFIX: &'static [&'static str] =
         &["جاده", "بلوار", "خیابان", "کوچه", "میدان"];
+
     const ADDRESS_STREET_TPL: &'static str = "{StreetSuffix} {StreetName}";
     const ADDRESS_TIME_ZONE: &'static [&'static str] = &["Asia/Tehran"];
     const ADDRESS_ZIP_FORMATS: &'static [&'static str] = &["#####-#####"];
@@ -1015,9 +1026,6 @@ impl Data for FA_IR {
 
     const JOB_TITLE_TPL: &'static str = "{Position} {Seniority} {Field}";
 
-    const ADDRESS_CITY_TPL: &'static str = "{CityName} {CitySuffix}";
-    const ADDRESS_CITY_WITH_PREFIX_TPL: &'static str = "{CityPrefix} {CityName} {CitySuffix}";
-    const ADDRESS_SECONDARY_ADDR_TPL: &'static str = "{SecondaryAddrType} {Number}";
 
     const COMPANY_NAME_TPLS: &'static [&'static str] =
         &["{Name_1} {Suffix}", "{Name_1} e {Name_2} {Suffix}"];
@@ -1071,6 +1079,105 @@ impl Data for FA_IR {
         &["فناوری‌ها", "روش‌ها", "ابتکارات", "زیرساخت‌ها", "پلتفرم‌ها"];
 
     const COMPANY_BS_TPL: &'static str = "{Verb} {Noun} {Adj}";
+
+
+    const LOREM_WORD: &[&str] = &[
+        "سفارش",
+        "پرداخت",
+        "محصول",
+        "مشتری",
+        "فروشگاه",
+        "ارسال",
+        "پشتیبانی",
+        "حساب",
+        "کاربری",
+        "احراز",
+        "هویت",
+        "تراکنش",
+        "فاکتور",
+        "سبد",
+        "خرید",
+        "تخفیف",
+        "موجودی",
+        "گزارش",
+        "تنظیمات",
+        "مدیر",
+        "دسترسی",
+        "اعلان",
+        "پیگیری",
+        "درگاه",
+        "پرداخت",
+        "وضعیت",
+        "موفق",
+        "ناموفق",
+        "درخواست",
+        "تایید",
+        "سلام",
+        "امروز",
+        "فردا",
+        "کتاب",
+        "خانه",
+        "مدرسه",
+        "دانشگاه",
+        "سطح",
+        "پایداری",
+        "برنامه",
+        "سامانه",
+        "کاربر",
+        "اطلاعات",
+        "داده",
+        "شبکه",
+        "فناوری",
+        "رایانه",
+        "هوشمند",
+        "توسعه",
+        "پروژه",
+        "آزمایش",
+        "نمونه",
+        "متن",
+        "گزارش",
+        "درخواست",
+        "پاسخ",
+        "سابقه",
+        "پیام",
+        "خدمت",
+        "سیستم",
+        "مدیریت",
+        "فرآیند",
+        "امکان",
+        "نتیجه",
+        "کرج",
+        "جلال آل‌احمد",
+        "دهخدا",
+        "چرند و پرند",
+        "ضرب المثل",
+        "و",
+        "شفا",
+        "ایران",
+        "پارسی",
+        "فرودسی",
+        "ارتش",
+        "صداقت",
+        "هویت",
+        "فرهنگی",
+        "روستا",
+        "شهری"
+    ];
+
+    // persian color
+    const COMMERCE_COLOR: &'static [&'static str] = &[
+        "سیاه", "سفید", "قرمز", "سبز", "آبی", "زرد", "بنفش", "گلبهی", "صورتی", "قهوه‌ای",
+        "خاکستری", "نقره‌ای", "زرشکی", "فیروزه‌ای", "نارنجی", "سبز آبی", "ارغوانی", "طلایی",
+        "بژ", "دلفینی", "استخوانی", "نیلی", "سرخابی", "زیتونی", "مرجانی", "لاجوردی",
+        "سبز کله‌غازی", "ذغالی", "برنزی", "مسی", "شیری", "طوسی", "برنزه روشن", "خاکی", "جگری",
+        "لیمویی", "آبی آسمانی", "کرم", "خردلی", "یاسی"
+    ];
+
+    const COMMERCE_PRODUCT_TYPE: &'static [&'static str] = &[
+        "صندلی", "سیگار", "رایانه", "صفحه‌کلید", "ماوس", "دوچرخه", "توپ", "دستکش", "شلوار", "کفش", "کلاه", "میز", "نیمکت", "ساعت دیواری", "ساعت مچی", "کیف پول", "کیف", "چراغ", "گوشی", "کتاب",
+        "مبل", "تخت", "میز کار", "لپ‌تاپ", "تبلت", "هدفون", "بلندگو", "دوربین", "لنز", "پیراهن", "ژاکت", "پالتو", "جین", "جوراب", "شال", "انگشتر", "گردنبند", "دستبند", "چتر", "بطری", "فنجان", "بشقاب", "چاقو", "چنگال", "قاشق", "حوله", "صابون", "شامپو", "کرم", "اسباب‌بازی", "پازل", "پهپاد", "چاپگر", "مانیتور", "فرش", "پرده"
+    ];
+
 }
 
 impl CityNameGenFn for FA_IR {}
