@@ -48,8 +48,8 @@ impl<L: Data + Copy> Dummy<FreeEmail<L>> for String {
 impl<L: Data + Copy> Dummy<SafeEmail<L>> for String {
     fn dummy_with_rng<R: RngExt + ?Sized>(c: &SafeEmail<L>, rng: &mut R) -> Self {
         let username: String = NameAscii(c.0).fake_with_rng::<&str, _>(rng).to_lowercase();
-        let mail = FreeEmailProvider(c.0).fake_with_rng::<&str, _>(rng).to_string();
-        format!("{username}@{mail}")
+        // let mail = FreeEmailProvider(c.0).fake_with_rng::<&str, _>(rng).to_string();
+        format!("{username}@example.com")
     }
 }
 
