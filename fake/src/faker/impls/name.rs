@@ -13,7 +13,7 @@ impl<L: Data> Dummy<FirstName<L>> for String {
 impl<L: Data> Dummy<NameAscii<L>> for &str {
     fn dummy_with_rng<R: RngExt + ?Sized>(_: &NameAscii<L>, rng: &mut R) -> Self {
         let s = *L::NAME_ASCII.choose(rng).unwrap();
-        s.into()
+        s
     }
 }
 
